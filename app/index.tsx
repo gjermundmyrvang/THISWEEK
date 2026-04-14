@@ -29,6 +29,7 @@ export default function Index() {
         data={days}
         keyExtractor={(item) => item.label}
         extraData={{ openIndex, tasksByDate }}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingTop: insets.top,
           paddingBottom: insets.bottom,

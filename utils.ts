@@ -1,5 +1,3 @@
-import { LayoutAnimation } from "react-native";
-
 const WEEKDAY = [
   "SUNDAY",
   "MONDAY",
@@ -33,18 +31,3 @@ export function formatDate(date: Date) {
 }
 
 export const getKey = (date: Date) => date.toISOString().split("T")[0];
-
-export const smoothLayoutAnimation = {
-  duration: 250,
-  create: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-  update: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-  },
-  delete: {
-    type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity,
-  },
-};
