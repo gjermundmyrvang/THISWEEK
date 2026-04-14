@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Keyboard, TextInput, View } from "react-native";
+import { Keyboard, Platform, TextInput } from "react-native";
 
 type Props = {
   onAdd: (text: string) => void;
@@ -7,26 +7,32 @@ type Props = {
 
 export default function TaskInput({ onAdd }: Props) {
   const [value, setValue] = useState("");
+  const [focused, setFocused] = useState(false);
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <TextInput
-        placeholder="Add new task..."
-        value={value}
-        onChangeText={setValue}
-        returnKeyType="done"
-        onSubmitEditing={() => {
-          if (!value.trim()) return;
-          onAdd(value);
-          setValue("");
-          Keyboard.dismiss();
-        }}
-        style={{
-          color: "#4c4c4c",
-          width: "100%",
-          paddingVertical: 8,
-        }}
-      />
-    </View>
+    <TextInput
+      placeholder={focused ? "" : "New Item..."}
+      value={value}
+      onChangeText={setValue}
+      onFocus={() => setFocused(true)}
+      returnKeyType="done"
+      onSubmitEditing={() => {
+        if (!value.trim()) return;
+        onAdd(value);
+        setValue("");
+        Keyboard.dismiss();
+      }}
+      style={{
+        color: "#4c4c4c",
+        width: "100%",
+        marginTop: 16,
+        paddingVertical: 16,
+        ...Platform.select({
+          web: { outline: "none" },
+        }),
+      }}
+      placeholderTextColor="#999999"
+      selectionColor={"#ff7a00"}
+    />
   );
 }
