@@ -1,3 +1,4 @@
+import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
 import { formatDate, smoothLayoutAnimation } from "@/utils";
 import { LayoutAnimation, Pressable, Text, View } from "react-native";
@@ -25,6 +26,8 @@ export default function DayItem({
   toggleTask,
   addTask,
 }: Props) {
+  const theme = useTheme();
+
   const hasTasks = tasks.length > 0;
   const allDone = hasTasks && tasks.every((t) => t.done);
 
@@ -33,7 +36,7 @@ export default function DayItem({
       style={{
         width: "100%",
         borderBottomWidth: index === 6 ? 0 : 1,
-        borderColor: "#a1a1a1",
+        borderColor: theme.border,
         padding: 28,
         position: "relative",
       }}
@@ -62,7 +65,7 @@ export default function DayItem({
             fontFamily: "Goldman_700Bold",
             fontSize: 40,
             letterSpacing: 2,
-            color: "#1e1e1e",
+            color: theme.titleText,
           }}
         >
           {isToday ? "TODAY" : day.label}
@@ -70,7 +73,7 @@ export default function DayItem({
       </Pressable>
       {isOpen && (
         <View style={{ marginTop: 10, gap: 10 }}>
-          <Text style={{ color: "#4c4c4c" }}>{formatDate(day.date)}</Text>
+          <Text style={{ color: theme.labelText }}>{formatDate(day.date)}</Text>
 
           <TaskContent tasks={tasks} date={day.date} toggleTask={toggleTask} />
 
