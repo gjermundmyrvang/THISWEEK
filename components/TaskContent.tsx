@@ -1,6 +1,7 @@
 import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
 import { Checkbox } from "expo-checkbox";
+import * as Haptics from "expo-haptics";
 import { Text, View } from "react-native";
 
 type TaskContentProps = {
@@ -43,7 +44,10 @@ export default function TaskContent({
         >
           <Checkbox
             value={t.done}
-            onValueChange={() => toggleTask(date, t.id)}
+            onValueChange={() => {
+              toggleTask(date, t.id);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+            }}
             color={t.done ? "#ff6a00" : undefined}
             style={{
               width: 22,
