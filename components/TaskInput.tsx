@@ -7,7 +7,7 @@ type Props = {
 
 export default function TaskInput({ onAdd }: Props) {
   const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState(false); // Need this for the WEB app
 
   return (
     <TextInput
@@ -20,6 +20,7 @@ export default function TaskInput({ onAdd }: Props) {
         if (!value.trim()) return;
         onAdd(value);
         setValue("");
+        setFocused(false);
         Keyboard.dismiss();
       }}
       style={{
