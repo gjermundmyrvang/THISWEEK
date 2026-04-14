@@ -1,6 +1,6 @@
 import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
-import { formatDate, smoothLayoutAnimation } from "@/utils";
+import { formatDate } from "@/utils";
 import { LayoutAnimation, Pressable, Text, View } from "react-native";
 import TaskContent from "./TaskContent";
 import TaskInput from "./TaskInput";
@@ -56,7 +56,7 @@ export default function DayItem({
       )}
       <Pressable
         onPress={() => {
-          LayoutAnimation.configureNext(smoothLayoutAnimation);
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
           onToggleOpen();
         }}
       >
