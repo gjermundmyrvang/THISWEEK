@@ -1,3 +1,4 @@
+import { useTheme } from "@/providers/ThemeProvider";
 import { useState } from "react";
 import { Keyboard, Platform, TextInput } from "react-native";
 
@@ -6,6 +7,8 @@ type Props = {
 };
 
 export default function TaskInput({ onAdd }: Props) {
+  const theme = useTheme();
+
   const [value, setValue] = useState("");
   const [focused, setFocused] = useState(false); // Need this for the WEB app
 
@@ -15,16 +18,16 @@ export default function TaskInput({ onAdd }: Props) {
       value={value}
       onChangeText={setValue}
       onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       returnKeyType="done"
       onSubmitEditing={() => {
         if (!value.trim()) return;
         onAdd(value);
         setValue("");
-        setFocused(false);
         Keyboard.dismiss();
       }}
       style={{
-        color: "#4c4c4c",
+        color: theme.labelText,
         width: "100%",
         marginTop: 16,
         paddingVertical: 16,
@@ -32,7 +35,7 @@ export default function TaskInput({ onAdd }: Props) {
           web: { outline: "none" },
         }),
       }}
-      placeholderTextColor="#999999"
+      placeholderTextColor={theme.placeholderText}
       selectionColor={"#ff7a00"}
     />
   );
