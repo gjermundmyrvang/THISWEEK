@@ -1,4 +1,5 @@
 import { TaskProvider } from "@/providers/TaskProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import {
   Goldman_400Regular,
   Goldman_700Bold,
@@ -7,6 +8,11 @@ import {
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
 
 function RootApp() {
   const [loaded, error] = useFonts({
@@ -30,7 +36,9 @@ function RootApp() {
 export default function RootLayout() {
   return (
     <TaskProvider>
-      <RootApp />
+      <ThemeProvider>
+        <RootApp />
+      </ThemeProvider>
     </TaskProvider>
   );
 }

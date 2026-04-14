@@ -1,5 +1,6 @@
 import DayItem from "@/components/DayItem";
 import { useTasks } from "@/providers/TaskProvider";
+import { useTheme } from "@/providers/ThemeProvider";
 import { getKey, getNext7Days } from "@/utils";
 import { useState } from "react";
 import { FlatList, KeyboardAvoidingView } from "react-native";
@@ -8,7 +9,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function Index() {
   const insets = useSafeAreaInsets();
   const days = getNext7Days();
+
   const { tasksByDate, toggleTask, addTask } = useTasks();
+  const theme = useTheme();
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -18,7 +21,10 @@ export default function Index() {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: theme.background }}
+      behavior="padding"
+    >
       <FlatList
         data={days}
         keyExtractor={(item) => item.label}

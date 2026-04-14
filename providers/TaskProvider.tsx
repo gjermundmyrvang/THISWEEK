@@ -11,7 +11,7 @@ type TaskContextType = {
 
 const TaskContext = createContext<TaskContextType | null>(null);
 
-export function TaskProvider({ children }: { children: React.ReactNode }) {
+export function TaskProvider({ children }: React.PropsWithChildren) {
   const [tasksByDate, setTasksByDate] = useState<TasksByDate>({});
 
   // load
