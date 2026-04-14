@@ -1,3 +1,4 @@
+import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
 import { Checkbox } from "expo-checkbox";
 import { Text, View } from "react-native";
@@ -13,13 +14,15 @@ export default function TaskContent({
   date,
   toggleTask,
 }: TaskContentProps) {
+  const theme = useTheme();
+
   if (tasks.length === 0)
     return (
       <Text
         style={{
           fontFamily: "Goldman_400Regular",
           fontSize: 12,
-          color: "#767676",
+          color: theme.placeholderText,
         }}
       >
         No task yet
@@ -45,13 +48,13 @@ export default function TaskContent({
             style={{
               width: 22,
               height: 22,
-              borderColor: "#cbcbcb",
+              borderColor: theme.border,
             }}
           />
           <Text
             style={{
               fontSize: 12,
-              color: "#4c4c4c",
+              color: theme.labelText,
               textDecorationLine: t.done ? "line-through" : "none",
             }}
           >
