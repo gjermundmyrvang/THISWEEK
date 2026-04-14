@@ -1,6 +1,7 @@
 import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
 import { formatDate } from "@/utils";
+import * as Haptics from "expo-haptics";
 import { LayoutAnimation, Pressable, Text, View } from "react-native";
 import TaskContent from "./TaskContent";
 import TaskInput from "./TaskInput";
@@ -58,6 +59,7 @@ export default function DayItem({
         onPress={() => {
           LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
           onToggleOpen();
+          Haptics.selectionAsync();
         }}
       >
         <Text
