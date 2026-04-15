@@ -24,12 +24,11 @@ export default function TaskContent({
     return (
       <Text
         style={{
-          fontFamily: "Goldman_400Regular",
           fontSize: 12,
           color: theme.placeholderText,
         }}
       >
-        No task yet
+        No upcoming tasks
       </Text>
     );
 
