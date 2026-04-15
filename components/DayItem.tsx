@@ -14,6 +14,7 @@ type Props = {
   tasks: Task[];
   onToggleOpen: () => void;
   toggleTask: (date: Date, id: string) => void;
+  deleteTask: (date: Date, id: string) => void;
   addTask: (date: Date, text: string) => void;
 };
 
@@ -25,6 +26,7 @@ export default function DayItem({
   tasks,
   onToggleOpen,
   toggleTask,
+  deleteTask,
   addTask,
 }: Props) {
   const theme = useTheme();
@@ -77,7 +79,12 @@ export default function DayItem({
         <View style={{ marginTop: 10, gap: 10 }}>
           <Text style={{ color: theme.labelText }}>{formatDate(day.date)}</Text>
 
-          <TaskContent tasks={tasks} date={day.date} toggleTask={toggleTask} />
+          <TaskContent
+            tasks={tasks}
+            date={day.date}
+            toggleTask={toggleTask}
+            deleteTask={deleteTask}
+          />
 
           <TaskInput onAdd={(text) => addTask(day.date, text)} />
         </View>

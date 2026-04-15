@@ -2,18 +2,20 @@ import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
 import { Checkbox } from "expo-checkbox";
 import * as Haptics from "expo-haptics";
-import { Text, View } from "react-native";
+import { Platform, Pressable, Text, View } from "react-native";
 
 type TaskContentProps = {
   tasks: Task[];
   date: Date;
   toggleTask: (d: Date, id: string) => void;
+  deleteTask: (d: Date, id: string) => void;
 };
 
 export default function TaskContent({
   tasks,
   date,
   toggleTask,
+  deleteTask,
 }: TaskContentProps) {
   const theme = useTheme();
 
@@ -38,32 +40,46 @@ export default function TaskContent({
           style={{
             flexDirection: "row",
             alignItems: "center",
-            gap: 16,
+            justifyContent: "space-between",
             marginTop: 8,
           }}
         >
-          <Checkbox
-            value={t.done}
-            onValueChange={() => {
-              toggleTask(date, t.id);
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-            }}
-            color={t.done ? "#ff6a00" : undefined}
+          <View
             style={{
-              width: 22,
-              height: 22,
-              borderColor: theme.border,
-            }}
-          />
-          <Text
-            style={{
-              fontSize: 12,
-              color: theme.labelText,
-              textDecorationLine: t.done ? "line-through" : "none",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 16,
+              flexShrink: 1,
             }}
           >
-            {t.text}
-          </Text>
+            <Checkbox
+              value={t.done}
+              onValueChange={() => {
+                toggleTask(date, t.id);
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+              }}
+              color={t.done ? "#ff6a00" : undefined}
+              style={{
+                width: 22,
+                height: 22,
+                borderColor: theme.border,
+              }}
+            />
+            <Text
+              style={{
+                fontSize: 12,
+                color: theme.labelText,
+                textDecorationLine: t.done ? "line-through" : "none",
+                flexShrink: 1,
+                ...Platform.select({ web: { wordBreak: "break-word" } }),
+              }}
+            >
+              {t.text}
+            </Text>
+          </View>
+          <Pressable onPress={() => deleteTask(date, t.id)}>
+            <Ionicons name="trash-outline" color={theme.labelText} size={20} />
+          </Pressable>
         </View>
       ))}
     </View>
