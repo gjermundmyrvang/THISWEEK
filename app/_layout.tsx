@@ -36,7 +36,24 @@ function RootApp() {
     return null;
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="temp-notes"
+        options={{
+          headerShown: false,
+          presentation: "formSheet",
+          sheetAllowedDetents: "fitToContents",
+          sheetGrabberVisible: true,
+          sheetCornerRadius: 24,
+          contentStyle: {
+            backgroundColor: "transparent",
+          },
+        }}
+      />
+    </Stack>
+  );
 }
 
 export default function RootLayout() {
