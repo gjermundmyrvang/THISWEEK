@@ -19,6 +19,7 @@ export default function TaskInput({ onAdd }: Props) {
       onChangeText={setValue}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
+      inputMode="text"
       returnKeyType="done"
       onSubmitEditing={() => {
         if (!value.trim()) return;
@@ -27,10 +28,10 @@ export default function TaskInput({ onAdd }: Props) {
         Keyboard.dismiss();
       }}
       style={{
+        fontFamily: "DMSans_400Regular",
         color: theme.labelText,
         width: "100%",
-        marginTop: 16,
-        paddingVertical: 16,
+        paddingVertical: 32,
         ...Platform.select({
           web: { outline: "none" },
         }),

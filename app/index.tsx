@@ -10,7 +10,7 @@ export default function Index() {
   const insets = useSafeAreaInsets();
   const days = getNext7Days();
 
-  const { tasksByDate, toggleTask, addTask, refresh } = useTasks();
+  const { tasksByDate, toggleTask, deleteTask, addTask, refresh } = useTasks();
   const theme = useTheme();
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -37,6 +37,7 @@ export default function Index() {
         keyExtractor={(item) => item.label}
         extraData={{ openIndex, tasksByDate }}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={{
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
@@ -45,7 +46,7 @@ export default function Index() {
           <RefreshControl
             onRefresh={onRefresh}
             refreshing={refreshing}
-            progressViewOffset={insets.top}
+            tintColor="#ff7a00"
           />
         }
         renderItem={({ item, index }) => {
@@ -59,6 +60,7 @@ export default function Index() {
               isToday={index === 0}
               tasks={tasks}
               toggleTask={toggleTask}
+              deleteTask={deleteTask}
               onToggleOpen={() => handleToggle(index)}
               addTask={addTask}
             />

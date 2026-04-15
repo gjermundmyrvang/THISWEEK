@@ -7,6 +7,7 @@ type TaskContextType = {
   tasksByDate: TasksByDate;
   addTask: (date: Date, text: string) => void;
   toggleTask: (date: Date, taskId: string) => void;
+  deleteTask: (date: Date, taskId: string) => void;
   refresh: () => Promise<void>;
 };
 
@@ -60,9 +61,19 @@ export function TaskProvider({ children }: React.PropsWithChildren) {
     await AsyncStorage.setItem("tasks", JSON.stringify(updated));
   };
 
+  const deleteTask = async (date: Date, taskId: string) => {
+    const key = getKey(date);
+    const updated = {
+      ...tasksByDate,
+      [key]: tasksByDate[key].filter((t) => t.id !== taskId),
+    };
+    setTasksByDate(updated);
+    await AsyncStorage.setItem("tasks", JSON.stringify(updated));
+  };
+
   return (
     <TaskContext.Provider
-      value={{ tasksByDate, addTask, toggleTask, refresh: load }}
+      value={{ tasksByDate, addTask, toggleTask, deleteTask, refresh: load }}
     >
       {children}
     </TaskContext.Provider>

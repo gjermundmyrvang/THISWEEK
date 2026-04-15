@@ -5,6 +5,7 @@ import * as Haptics from "expo-haptics";
 import { LayoutAnimation, Pressable, Text, View } from "react-native";
 import TaskContent from "./TaskContent";
 import TaskInput from "./TaskInput";
+import FadeInView from "./ui/FadeInView";
 
 type Props = {
   day: { date: Date; label: string };
@@ -14,6 +15,7 @@ type Props = {
   tasks: Task[];
   onToggleOpen: () => void;
   toggleTask: (date: Date, id: string) => void;
+  deleteTask: (date: Date, id: string) => void;
   addTask: (date: Date, text: string) => void;
 };
 
@@ -25,6 +27,7 @@ export default function DayItem({
   tasks,
   onToggleOpen,
   toggleTask,
+  deleteTask,
   addTask,
 }: Props) {
   const theme = useTheme();
@@ -36,6 +39,8 @@ export default function DayItem({
     <View
       style={{
         width: "100%",
+        maxWidth: 680, // For WEB Apps
+        alignSelf: "center",
         borderBottomWidth: index === 6 ? 0 : 1,
         borderColor: theme.border,
         padding: 28,
@@ -74,13 +79,22 @@ export default function DayItem({
         </Text>
       </Pressable>
       {isOpen && (
-        <View style={{ marginTop: 10, gap: 10 }}>
-          <Text style={{ color: theme.labelText }}>{formatDate(day.date)}</Text>
+        <FadeInView duration={500} style={{ marginTop: 10, gap: 10 }}>
+          <Text
+            style={{ fontFamily: "DMSans_500Medium", color: theme.labelText }}
+          >
+            {formatDate(day.date)}
+          </Text>
 
-          <TaskContent tasks={tasks} date={day.date} toggleTask={toggleTask} />
+          <TaskContent
+            tasks={tasks}
+            date={day.date}
+            toggleTask={toggleTask}
+            deleteTask={deleteTask}
+          />
 
           <TaskInput onAdd={(text) => addTask(day.date, text)} />
-        </View>
+        </FadeInView>
       )}
     </View>
   );
