@@ -3,17 +3,24 @@ import { useTasks } from "@/providers/TaskProvider";
 import { useTheme } from "@/providers/ThemeProvider";
 import { getKey, getNext7Days } from "@/utils";
 import { useState } from "react";
-import { FlatList, KeyboardAvoidingView } from "react-native";
+import { FlatList, KeyboardAvoidingView, RefreshControl } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Index() {
   const insets = useSafeAreaInsets();
   const days = getNext7Days();
 
-  const { tasksByDate, toggleTask, addTask } = useTasks();
+  const { tasksByDate, toggleTask, addTask, refresh } = useTasks();
   const theme = useTheme();
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refresh();
+    setRefreshing(false);
+  };
 
   const handleToggle = (index: number) => {
     const next = openIndex === index ? null : index;
@@ -34,6 +41,13 @@ export default function Index() {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         }}
+        refreshControl={
+          <RefreshControl
+            onRefresh={onRefresh}
+            refreshing={refreshing}
+            progressViewOffset={insets.top}
+          />
+        }
         renderItem={({ item, index }) => {
           const tasks = tasksByDate[getKey(item.date)] || [];
 

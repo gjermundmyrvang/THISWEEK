@@ -7,57 +7,63 @@ type TaskContextType = {
   tasksByDate: TasksByDate;
   addTask: (date: Date, text: string) => void;
   toggleTask: (date: Date, taskId: string) => void;
+  refresh: () => Promise<void>;
 };
 
 const TaskContext = createContext<TaskContextType | null>(null);
 
+function cleanPastDays(data: TasksByDate): TasksByDate {
+  const todayKey = getKey(new Date());
+  return Object.fromEntries(
+    Object.entries(data).filter(([key]) => key >= todayKey),
+  );
+}
+
 export function TaskProvider({ children }: React.PropsWithChildren) {
   const [tasksByDate, setTasksByDate] = useState<TasksByDate>({});
 
-  // load
+  // Load Tasks
+  const load = async () => {
+    const data = await AsyncStorage.getItem("tasks");
+    const parsed: TasksByDate = data ? JSON.parse(data) : {};
+    const cleaned = cleanPastDays(parsed);
+    setTasksByDate(cleaned);
+    await AsyncStorage.setItem("tasks", JSON.stringify(cleaned));
+  };
+
   useEffect(() => {
-    const load = async () => {
-      const data = await AsyncStorage.getItem("tasks");
-      if (data) setTasksByDate(JSON.parse(data));
-    };
+    // Trigger load on mount
     load();
   }, []);
 
-  // save
-  useEffect(() => {
-    AsyncStorage.setItem("tasks", JSON.stringify(tasksByDate));
-  }, [tasksByDate]);
-
-  const addTask = (date: Date, text: string) => {
+  const addTask = async (date: Date, text: string) => {
     if (!text.trim()) return;
-
     const key = getKey(date);
-
-    const newTask: Task = {
-      id: Date.now().toString(),
-      text,
-      done: false,
+    const newTask: Task = { id: Date.now().toString(), text, done: false };
+    const updated = {
+      ...tasksByDate,
+      [key]: [...(tasksByDate[key] || []), newTask],
     };
-
-    setTasksByDate((prev) => ({
-      ...prev,
-      [key]: [...(prev[key] || []), newTask],
-    }));
+    setTasksByDate(updated);
+    await AsyncStorage.setItem("tasks", JSON.stringify(updated));
   };
 
-  const toggleTask = (date: Date, taskId: string) => {
+  const toggleTask = async (date: Date, taskId: string) => {
     const key = getKey(date);
-
-    setTasksByDate((prev) => ({
-      ...prev,
-      [key]: prev[key].map((t) =>
+    const updated = {
+      ...tasksByDate,
+      [key]: tasksByDate[key].map((t) =>
         t.id === taskId ? { ...t, done: !t.done } : t,
       ),
-    }));
+    };
+    setTasksByDate(updated);
+    await AsyncStorage.setItem("tasks", JSON.stringify(updated));
   };
 
   return (
-    <TaskContext.Provider value={{ tasksByDate, addTask, toggleTask }}>
+    <TaskContext.Provider
+      value={{ tasksByDate, addTask, toggleTask, refresh: load }}
+    >
       {children}
     </TaskContext.Provider>
   );
