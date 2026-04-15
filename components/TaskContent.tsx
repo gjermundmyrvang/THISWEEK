@@ -1,5 +1,6 @@
 import { useTheme } from "@/providers/ThemeProvider";
 import { Task } from "@/types";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Checkbox } from "expo-checkbox";
 import * as Haptics from "expo-haptics";
 import { Platform, Pressable, Text, View } from "react-native";
