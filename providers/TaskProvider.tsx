@@ -7,6 +7,7 @@ type TaskContextType = {
   tasksByDate: TasksByDate;
   addTask: (date: Date, text: string) => void;
   toggleTask: (date: Date, taskId: string) => void;
+  refresh: () => Promise<void>;
 };
 
 const TaskContext = createContext<TaskContextType | null>(null);
@@ -57,7 +58,9 @@ export function TaskProvider({ children }: React.PropsWithChildren) {
   };
 
   return (
-    <TaskContext.Provider value={{ tasksByDate, addTask, toggleTask }}>
+    <TaskContext.Provider
+      value={{ tasksByDate, addTask, toggleTask, refresh: load }}
+    >
       {children}
     </TaskContext.Provider>
   );
