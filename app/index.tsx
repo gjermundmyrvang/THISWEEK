@@ -92,13 +92,17 @@ export default function Index() {
             width: 40,
             height: 40,
             borderRadius: 20,
-            backgroundColor: "#ff7a00",
+            backgroundColor: theme.placeholderText,
             justifyContent: "center",
             alignItems: "center",
           }}
           onPress={() => router.push("/temp-notes")}
         >
-          <Ionicons name="folder" size={22} color={theme.titleText} />
+          <Ionicons
+            name="document-text-outline"
+            size={22}
+            color={theme.titleText}
+          />
         </Pressable>
       </View>
     </KeyboardAvoidingView>
