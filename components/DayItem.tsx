@@ -5,6 +5,7 @@ import * as Haptics from "expo-haptics";
 import { LayoutAnimation, Pressable, Text, View } from "react-native";
 import TaskContent from "./TaskContent";
 import TaskInput from "./TaskInput";
+import FadeInView from "./ui/FadeInView";
 
 type Props = {
   day: { date: Date; label: string };
@@ -76,7 +77,7 @@ export default function DayItem({
         </Text>
       </Pressable>
       {isOpen && (
-        <View style={{ marginTop: 10, gap: 10 }}>
+        <FadeInView duration={500} style={{ marginTop: 10, gap: 10 }}>
           <Text style={{ color: theme.labelText }}>{formatDate(day.date)}</Text>
 
           <TaskContent
@@ -87,7 +88,7 @@ export default function DayItem({
           />
 
           <TaskInput onAdd={(text) => addTask(day.date, text)} />
-        </View>
+        </FadeInView>
       )}
     </View>
   );
