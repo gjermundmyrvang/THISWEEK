@@ -68,6 +68,7 @@ export default function TaskContent({
             <Text
               style={{
                 fontSize: 12,
+                fontFamily: "DMSans_400Regular",
                 color: theme.labelText,
                 textDecorationLine: t.done ? "line-through" : "none",
                 flexShrink: 1,

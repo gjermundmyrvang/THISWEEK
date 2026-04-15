@@ -80,7 +80,11 @@ export default function DayItem({
       </Pressable>
       {isOpen && (
         <FadeInView duration={500} style={{ marginTop: 10, gap: 10 }}>
-          <Text style={{ color: theme.labelText }}>{formatDate(day.date)}</Text>
+          <Text
+            style={{ fontFamily: "DMSans_500Medium", color: theme.labelText }}
+          >
+            {formatDate(day.date)}
+          </Text>
 
           <TaskContent
             tasks={tasks}
