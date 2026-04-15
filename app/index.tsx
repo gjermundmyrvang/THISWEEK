@@ -46,6 +46,7 @@ export default function Index() {
             onRefresh={onRefresh}
             refreshing={refreshing}
             progressViewOffset={insets.top}
+            tintColor="#ff7a00"
           />
         }
         renderItem={({ item, index }) => {
