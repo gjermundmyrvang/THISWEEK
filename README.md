@@ -1,5 +1,37 @@
 # THISWEEK
 
-Super simple and minimalistic app that displays a list of today and the following six days. Users can select days and add simple tasks they want to have achieved by this day.
+A minimal seven-day task planner. The app displays the current day and the six days ahead, each expandable to reveal tasks you want to get done that day.
 
 **Big shoutout to:** [Notiontick](https://pin.it/5ItreBj7s) for the UI inspiration for this app!
+
+## Screenshots
+
+**Light Theme:**
+
+<table>
+  <tr>
+    <td><img src="./assets/screenshots/1.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/2.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/3.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/4.PNG" width="200"/></td>
+  </tr>
+</table>
+
+**Dark Theme:**
+
+<table>
+  <tr>
+    <td><img src="./assets/screenshots/5.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/6.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/7.PNG" width="200"/></td>
+    <td><img src="./assets/screenshots/8.PNG" width="200"/></td>
+  </tr>
+</table>
+
+## GIF
+
+![appgif](/assets/screenshots/appgif.gif)
+
+## Fonts
+
+[Goldman Bold](https://fonts.google.com/specimen/Goldman) is used for day headings, and [DM Sans](https://fonts.google.com/specimen/DM+Sans) for all supporting text.
