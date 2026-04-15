@@ -30,7 +30,7 @@ A minimal seven-day task planner. The app displays the current day and the six d
 
 ## GIF
 
-![appgif](/assets/screenshots/appgif.gif)
+<img src="./assets/screenshots/appgif.gif" width="200"/>
 
 ## Fonts
 
