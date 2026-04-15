@@ -39,7 +39,7 @@ export default function TempNotes() {
   };
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
+    <View style={{ flex: 1, padding: 16, minHeight: 400 }}>
       <TaskContent
         date={new Date()}
         tasks={notes}
