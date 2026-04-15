@@ -39,6 +39,8 @@ export default function DayItem({
     <View
       style={{
         width: "100%",
+        maxWidth: 680, // For WEB Apps
+        alignSelf: "center",
         borderBottomWidth: index === 6 ? 0 : 1,
         borderColor: theme.border,
         padding: 28,
