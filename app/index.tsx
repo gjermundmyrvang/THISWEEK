@@ -37,6 +37,7 @@ export default function Index() {
         keyExtractor={(item) => item.label}
         extraData={{ openIndex, tasksByDate }}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={{
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
@@ -45,7 +46,6 @@ export default function Index() {
           <RefreshControl
             onRefresh={onRefresh}
             refreshing={refreshing}
-            progressViewOffset={insets.top}
             tintColor="#ff7a00"
           />
         }
