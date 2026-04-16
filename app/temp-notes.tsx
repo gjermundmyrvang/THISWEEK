@@ -3,7 +3,7 @@ import TaskInput from "@/components/TaskInput";
 import { Task } from "@/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 const STORAGE_KEY = "temp";
 
@@ -39,7 +39,7 @@ export default function TempNotes() {
   };
 
   return (
-    <View style={{ flex: 1, padding: 16, minHeight: 400 }}>
+    <KeyboardAwareScrollView style={{ flex: 1, padding: 16 }} bottomOffset={40}>
       <TaskContent
         date={new Date()}
         tasks={notes}
@@ -47,6 +47,6 @@ export default function TempNotes() {
         deleteTask={(_, id) => deleteNote(id)}
       />
       <TaskInput onAdd={addNote} />
-    </View>
+    </KeyboardAwareScrollView>
   );
 }

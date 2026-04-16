@@ -78,7 +78,12 @@ export default function TaskContent({
               {t.text}
             </Text>
           </View>
-          <Pressable onPress={() => deleteTask(date, t.id)}>
+          <Pressable
+            onPress={() => {
+              deleteTask(date, t.id);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            }}
+          >
             <Ionicons name="trash-outline" color={theme.labelText} size={20} />
           </Pressable>
         </View>
