@@ -12,6 +12,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 
 SplashScreen.setOptions({
   duration: 1000,
@@ -60,7 +61,9 @@ export default function RootLayout() {
   return (
     <TaskProvider>
       <ThemeProvider>
-        <RootApp />
+        <KeyboardProvider>
+          <RootApp />
+        </KeyboardProvider>
       </ThemeProvider>
     </TaskProvider>
   );
