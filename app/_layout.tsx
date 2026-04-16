@@ -1,5 +1,5 @@
 import { TaskProvider } from "@/providers/TaskProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ThemeProvider, useTheme } from "@/providers/ThemeProvider";
 import {
   DMSans_400Regular,
   DMSans_500Medium,
@@ -9,6 +9,7 @@ import {
   Goldman_700Bold,
 } from "@expo-google-fonts/goldman";
 import { useFonts } from "expo-font";
+import { isLiquidGlassAvailable } from "expo-glass-effect";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -20,6 +21,7 @@ SplashScreen.setOptions({
 });
 
 function RootApp() {
+  const theme = useTheme();
   const [loaded, error] = useFonts({
     Goldman_400Regular,
     Goldman_700Bold,
@@ -49,7 +51,9 @@ function RootApp() {
           sheetGrabberVisible: true,
           sheetCornerRadius: 24,
           contentStyle: {
-            backgroundColor: "transparent",
+            backgroundColor: isLiquidGlassAvailable()
+              ? "transparent"
+              : theme.background,
           },
         }}
       />
