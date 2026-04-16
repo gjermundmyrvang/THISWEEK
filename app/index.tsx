@@ -1,7 +1,7 @@
 import DayItem from "@/components/DayItem";
 import { useTasks } from "@/providers/TaskProvider";
 import { useTheme } from "@/providers/ThemeProvider";
-import { getKey, getNext7Days } from "@/utils";
+import { getKey } from "@/utils";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -16,9 +16,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Index() {
   const insets = useSafeAreaInsets();
-  const days = getNext7Days();
 
-  const { tasksByDate, toggleTask, deleteTask, addTask, refresh } = useTasks();
+  const { days, tasksByDate, toggleTask, deleteTask, addTask, refresh } =
+    useTasks();
   const theme = useTheme();
   const router = useRouter();
 
