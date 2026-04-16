@@ -3,15 +3,13 @@ import { useTasks } from "@/providers/TaskProvider";
 import { useTheme } from "@/providers/ThemeProvider";
 import { getKey } from "@/utils";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { GlassView, isLiquidGlassAvailable } from "expo-glass-effect";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, Pressable, RefreshControl, View } from "react-native";
 import { KeyboardAvoidingView } from "react-native-keyboard-controller";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Index() {
-  const insets = useSafeAreaInsets();
-
   const { days, tasksByDate, toggleTask, deleteTask, addTask, refresh } =
     useTasks();
   const theme = useTheme();
@@ -32,12 +30,11 @@ export default function Index() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: theme.background }}
-      behavior="padding"
-    >
+    <KeyboardAvoidingView style={{ flex: 1 }}>
       <View
         style={{
+          flex: 1,
+          backgroundColor: theme.background,
           position: "relative",
           maxWidth: 680,
           alignSelf: "center",
@@ -50,10 +47,6 @@ export default function Index() {
           extraData={{ openIndex, tasksByDate }}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={{
-            paddingTop: insets.top,
-            paddingBottom: insets.bottom,
-          }}
           refreshControl={
             <RefreshControl
               onRefresh={onRefresh}
@@ -79,7 +72,7 @@ export default function Index() {
             );
           }}
         />
-        <Pressable
+        <GlassView
           style={{
             position: "absolute",
             bottom: 20,
@@ -87,18 +80,21 @@ export default function Index() {
             width: 40,
             height: 40,
             borderRadius: 20,
-            backgroundColor: theme.placeholderText,
             justifyContent: "center",
             alignItems: "center",
+            backgroundColor: isLiquidGlassAvailable()
+              ? "transparent"
+              : theme.placeholderText,
           }}
-          onPress={() => router.push("/temp-notes")}
         >
-          <Ionicons
-            name="document-text-outline"
-            size={22}
-            color={theme.titleText}
-          />
-        </Pressable>
+          <Pressable onPress={() => router.push("/temp-notes")}>
+            <Ionicons
+              name="document-text-outline"
+              size={22}
+              color={theme.titleText}
+            />
+          </Pressable>
+        </GlassView>
       </View>
     </KeyboardAvoidingView>
   );
