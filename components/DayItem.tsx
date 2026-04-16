@@ -76,7 +76,7 @@ export default function DayItem({
         </Text>
       </Pressable>
       {isOpen && (
-        <FadeInView duration={500} style={{ marginTop: 10, gap: 10 }}>
+        <FadeInView duration={500} style={{ marginTop: 2, gap: 10 }}>
           <Text
             style={{ fontFamily: "DMSans_500Medium", color: theme.labelText }}
           >
