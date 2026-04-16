@@ -1,3 +1,8 @@
+export type Day = {
+  date: Date;
+  label: string;
+};
+
 export type Task = {
   id: string;
   text: string;

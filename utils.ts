@@ -1,3 +1,5 @@
+import { Day } from "./types";
+
 const WEEKDAY = [
   "SUNDAY",
   "MONDAY",
@@ -8,7 +10,7 @@ const WEEKDAY = [
   "SATURDAY",
 ];
 
-export function getNext7Days() {
+export function getNext7Days(): Day[] {
   const today = new Date();
 
   return Array.from({ length: 7 }, (_, i) => {
