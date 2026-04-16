@@ -41,7 +41,13 @@ function RootApp() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          headerShown: false,
+          contentStyle: { backgroundColor: theme.background },
+        }}
+      />
       <Stack.Screen
         name="temp-notes"
         options={{
