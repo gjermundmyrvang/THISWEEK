@@ -6,8 +6,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { GlassView, isLiquidGlassAvailable } from "expo-glass-effect";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, Pressable, RefreshControl, View } from "react-native";
-import { KeyboardAvoidingView } from "react-native-keyboard-controller";
+import { Pressable, RefreshControl, View } from "react-native";
+import {
+  KeyboardAwareScrollView,
+  KeyboardStickyView,
+} from "react-native-keyboard-controller";
 
 export default function Index() {
   const { days, tasksByDate, toggleTask, deleteTask, addTask, refresh } =
@@ -30,49 +33,37 @@ export default function Index() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: theme.background }}
+    <View
+      style={{ flex: 1, maxWidth: 680, alignSelf: "center", width: "100%" }}
     >
-      <View
-        style={{
-          flex: 1,
-          position: "relative",
-          maxWidth: 680,
-          alignSelf: "center",
-          width: "100%",
-        }}
+      <KeyboardAwareScrollView
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+        bottomOffset={40}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
-        <FlatList
-          data={days}
-          keyExtractor={(item) => item.label}
-          extraData={{ openIndex, tasksByDate }}
-          showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-          refreshControl={
-            <RefreshControl
-              onRefresh={onRefresh}
-              refreshing={refreshing}
-              tintColor="#ff7a00"
+        {days.map((item, index) => {
+          const tasks = tasksByDate[getKey(item.date)] || [];
+          return (
+            <DayItem
+              key={item.label}
+              day={item}
+              index={index}
+              isOpen={openIndex === index}
+              isToday={index === 0}
+              tasks={tasks}
+              toggleTask={toggleTask}
+              deleteTask={deleteTask}
+              onToggleOpen={() => handleToggle(index)}
+              addTask={addTask}
             />
-          }
-          renderItem={({ item, index }) => {
-            const tasks = tasksByDate[getKey(item.date)] || [];
+          );
+        })}
+      </KeyboardAwareScrollView>
 
-            return (
-              <DayItem
-                day={item}
-                index={index}
-                isOpen={openIndex === index}
-                isToday={index === 0}
-                tasks={tasks}
-                toggleTask={toggleTask}
-                deleteTask={deleteTask}
-                onToggleOpen={() => handleToggle(index)}
-                addTask={addTask}
-              />
-            );
-          }}
-        />
+      <KeyboardStickyView>
         <GlassView
           style={{
             position: "absolute",
@@ -96,7 +87,7 @@ export default function Index() {
             />
           </Pressable>
         </GlassView>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardStickyView>
+    </View>
   );
 }
