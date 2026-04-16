@@ -1,14 +1,15 @@
 import { useTheme } from "@/providers/ThemeProvider";
-import { Task } from "@/types";
+import { Day, Task } from "@/types";
 import { formatDate } from "@/utils";
 import * as Haptics from "expo-haptics";
-import { LayoutAnimation, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
+import { useDerivedValue } from "react-native-reanimated";
 import TaskContent from "./TaskContent";
 import TaskInput from "./TaskInput";
-import FadeInView from "./ui/FadeInView";
+import Accordion from "./ui/Accordion";
 
 type Props = {
-  day: { date: Date; label: string };
+  day: Day;
   index: number;
   isOpen: boolean;
   isToday: boolean;
@@ -35,6 +36,8 @@ export default function DayItem({
   const hasTasks = tasks.length > 0;
   const allDone = hasTasks && tasks.every((t) => t.done);
 
+  const expanded = useDerivedValue(() => isOpen);
+
   return (
     <View
       style={{
@@ -59,7 +62,6 @@ export default function DayItem({
       )}
       <Pressable
         onPress={() => {
-          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
           onToggleOpen();
           Haptics.selectionAsync();
         }}
@@ -75,24 +77,22 @@ export default function DayItem({
           {isToday ? "TODAY" : day.label}
         </Text>
       </Pressable>
-      {isOpen && (
-        <FadeInView duration={500} style={{ marginTop: 2, gap: 10 }}>
-          <Text
-            style={{ fontFamily: "DMSans_500Medium", color: theme.labelText }}
-          >
-            {formatDate(day.date)}
-          </Text>
+      <Accordion isExpanded={expanded} viewKey="accordion">
+        <Text
+          style={{ fontFamily: "DMSans_500Medium", color: theme.labelText }}
+        >
+          {formatDate(day.date)}
+        </Text>
 
-          <TaskContent
-            tasks={tasks}
-            date={day.date}
-            toggleTask={toggleTask}
-            deleteTask={deleteTask}
-          />
+        <TaskContent
+          tasks={tasks}
+          date={day.date}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
 
-          <TaskInput onAdd={(text) => addTask(day.date, text)} />
-        </FadeInView>
-      )}
+        <TaskInput onAdd={(text) => addTask(day.date, text)} />
+      </Accordion>
     </View>
   );
 }
