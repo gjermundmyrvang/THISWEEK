@@ -10,6 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
+      "icon": {
+        "light": "./assets/ios-icons/icon-light.png",
+        "dark": "./assets/ios-icons/icon-dark.png"
+      },
       "bundleIdentifier": "com.devgjerry.thisweekapplication",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
