@@ -1,9 +1,10 @@
-import { Task, TasksByDate } from "@/types";
-import { getKey } from "@/utils";
+import { Day, Task, TasksByDate } from "@/types";
+import { getKey, getNext7Days } from "@/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type TaskContextType = {
+  days: Day[];
   tasksByDate: TasksByDate;
   addTask: (date: Date, text: string) => void;
   toggleTask: (date: Date, taskId: string) => void;
@@ -21,10 +22,12 @@ function cleanPastDays(data: TasksByDate): TasksByDate {
 }
 
 export function TaskProvider({ children }: React.PropsWithChildren) {
+  const [days, setDays] = useState<Day[]>(getNext7Days() ?? []);
   const [tasksByDate, setTasksByDate] = useState<TasksByDate>({});
 
   // Load Tasks
   const load = async () => {
+    setDays(getNext7Days());
     const data = await AsyncStorage.getItem("tasks");
     const parsed: TasksByDate = data ? JSON.parse(data) : {};
     const cleaned = cleanPastDays(parsed);
@@ -73,7 +76,14 @@ export function TaskProvider({ children }: React.PropsWithChildren) {
 
   return (
     <TaskContext.Provider
-      value={{ tasksByDate, addTask, toggleTask, deleteTask, refresh: load }}
+      value={{
+        days,
+        tasksByDate,
+        addTask,
+        toggleTask,
+        deleteTask,
+        refresh: load,
+      }}
     >
       {children}
     </TaskContext.Provider>

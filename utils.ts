@@ -1,3 +1,5 @@
+import { Day } from "./types";
+
 const WEEKDAY = [
   "SUNDAY",
   "MONDAY",
@@ -8,7 +10,7 @@ const WEEKDAY = [
   "SATURDAY",
 ];
 
-export function getNext7Days() {
+export function getNext7Days(): Day[] {
   const today = new Date();
 
   return Array.from({ length: 7 }, (_, i) => {
@@ -30,4 +32,9 @@ export function formatDate(date: Date) {
   });
 }
 
-export const getKey = (date: Date) => date.toISOString().split("T")[0];
+export const getKey = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
