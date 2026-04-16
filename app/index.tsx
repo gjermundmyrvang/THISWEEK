@@ -30,11 +30,12 @@ export default function Index() {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: theme.background }}
+    >
       <View
         style={{
           flex: 1,
-          backgroundColor: theme.background,
           position: "relative",
           maxWidth: 680,
           alignSelf: "center",
