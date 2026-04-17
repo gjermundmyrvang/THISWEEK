@@ -32,12 +32,6 @@ Click [this link](https://thisweek.gjermundmyrvang.com) to see the web version o
   </tr>
 </table>
 
-## Screen Recording (2x speed)
-
-<video width="200" controls>
-  <source src="./assets/screenshots/screenrec.mp4" type="video/mp4">
-</video>
-
 ## Fonts
 
 [Goldman Bold](https://fonts.google.com/specimen/Goldman) is used for day headings, and [DM Sans](https://fonts.google.com/specimen/DM+Sans) for all supporting text.
