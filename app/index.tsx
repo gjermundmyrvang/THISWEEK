@@ -43,6 +43,7 @@ export default function Index() {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        style={{ flex: 1 }}
       >
         {days.map((item, index) => {
           const tasks = tasksByDate[getKey(item.date)] || [];
