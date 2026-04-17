@@ -32,6 +32,10 @@ Click [this link](https://thisweek.gjermundmyrvang.com) to see the web version o
   </tr>
 </table>
 
+## Screen Recording (2x speed)
+
+https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
+
 ## Fonts
 
 [Goldman Bold](https://fonts.google.com/specimen/Goldman) is used for day headings, and [DM Sans](https://fonts.google.com/specimen/DM+Sans) for all supporting text.
