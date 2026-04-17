@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "thisweek",
-    "slug": "thisweek",
-    "version": "1.0.3",
+    "name": "Septa",
+    "slug": "septa",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "thisweek",
