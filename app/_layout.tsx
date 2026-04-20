@@ -13,6 +13,7 @@ import { isLiquidGlassAvailable } from "expo-glass-effect";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { Platform } from "react-native";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
 SplashScreen.setOptions({
@@ -51,8 +52,13 @@ function RootApp() {
       <Stack.Screen
         name="temp-notes"
         options={{
-          headerShown: false,
-          presentation: "formSheet",
+          headerShown: Platform.OS === "ios" ? false : true,
+          headerStyle: {
+            backgroundColor: theme.background,
+          },
+          title: "Temporary Notes",
+          headerTintColor: theme.titleText,
+          presentation: Platform.OS === "ios" ? "formSheet" : "modal",
           sheetAllowedDetents: "fitToContents",
           sheetGrabberVisible: true,
           sheetCornerRadius: 24,
