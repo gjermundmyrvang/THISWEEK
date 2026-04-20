@@ -28,7 +28,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.devgjerry.thisweekapplication"
+      "package": "com.devgjerry.thisweekapplication",
+      "buildType": "apk"
     },
     "web": {
       "output": "static",
