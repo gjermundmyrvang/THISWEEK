@@ -4,10 +4,6 @@ A minimal seven-day task planner. The app displays the current day and the six d
 
 **Big shoutout to:** [Notiontick](https://pin.it/5ItreBj7s) for the UI inspiration for this app!
 
-## Web Version
-
-Click [this link](https://thisweek.gjermundmyrvang.com) to see the web version of the app ;)
-
 ## Functionality
 
 **7-Day Task View**  
@@ -28,7 +24,22 @@ A floating action button gives quick access to a separate notes sheet for tempor
 **Theming**  
 Supports light and dark mode, adapting to the system appearance. On iOS 26, the UI takes advantage of Liquid Glass effects where available.
 
-## Screenshots
+---
+
+## IOS
+
+The app is curently available via TestFlight:
+
+--> [Join iOS Beta](https://testflight.apple.com/join/ymuNXsES)
+
+### How to install
+
+1. Open the TestFlight link on your iPhone
+2. Install the TestFlight app if you don’t already have it
+3. Accept the invite
+4. Install Next Seven from TestFlight
+
+### Screenshots
 
 **Light Theme:**
 
@@ -52,13 +63,46 @@ Supports light and dark mode, adapting to the system appearance. On iOS 26, the 
   </tr>
 </table>
 
-## Screen Recording (2x speed)
+### Screen Recording (2x speed)
 
 https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
+
+---
+
+## Android Download (APK)
+
+Download the latest Android version:
+
+**ADD APK HERE**
+
+Since this app is not on the Play Store, you need to install it manually.
+
+### Step 1: Allow unknown apps
+
+When prompted, allow installation from your browser or file manager:
+
+- On devices running Android 8.0 (API level 26) and higher, you must navigate to the Install unknown apps system settings screen to enable app installations from a particular location (i.e. the web browser you are downloading the app from).
+- On devices running Android 7.1.1 (API level 25) and lower, you should enable the Unknown sources system setting, found in Settings > Security on your device.
+
+### Step 2: Install the APK
+
+- Open the downloaded `nextseven.apk`
+- Tap Install
+- Wait for installation to finish
+
+---
+
+## Web Version
+
+Click [this link](https://thisweek.gjermundmyrvang.com) to see the web version of the app ;)
+
+---
 
 ## Fonts
 
 [Goldman Bold](https://fonts.google.com/specimen/Goldman) is used for day headings, and [DM Sans](https://fonts.google.com/specimen/DM+Sans) for all supporting text.
+
+---
 
 ## Privacy Policy
 
