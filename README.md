@@ -59,3 +59,7 @@ https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
 ## Fonts
 
 [Goldman Bold](https://fonts.google.com/specimen/Goldman) is used for day headings, and [DM Sans](https://fonts.google.com/specimen/DM+Sans) for all supporting text.
+
+## Privacy Policy
+
+The Privacy Policy for this app can be found [here](https://gjermundmyrvang.github.io/privacy_policy/nextseven/)
