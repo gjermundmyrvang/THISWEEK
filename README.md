@@ -73,7 +73,7 @@ https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
 
 Download the latest Android version:
 
-**ADD APK HERE**
+--> [Download Android APK](https://github.com/gjermundmyrvang/THISWEEK/releases/latest)
 
 Since this app is not on the Play Store, you need to install it manually.
 
