@@ -24,22 +24,7 @@ A floating action button gives quick access to a separate notes sheet for tempor
 **Theming**  
 Supports light and dark mode, adapting to the system appearance. On iOS 26, the UI takes advantage of Liquid Glass effects where available.
 
----
-
-## IOS
-
-The app is curently available via TestFlight:
-
---> [Join iOS Beta](https://testflight.apple.com/join/ymuNXsES)
-
-### How to install
-
-1. Open the TestFlight link on your iPhone
-2. Install the TestFlight app if you don’t already have it
-3. Accept the invite
-4. Install Next Seven from TestFlight
-
-### Screenshots
+## Screenshots
 
 **Light Theme:**
 
@@ -66,6 +51,21 @@ The app is curently available via TestFlight:
 ### Screen Recording (2x speed)
 
 https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
+
+---
+
+## IOS
+
+The app is curently available via TestFlight:
+
+--> [Join iOS Beta](https://testflight.apple.com/join/ymuNXsES)
+
+### How to install
+
+1. Open the TestFlight link on your iPhone
+2. Install the TestFlight app if you don’t already have it
+3. Accept the invite
+4. Install Next Seven from TestFlight
 
 ---
 
