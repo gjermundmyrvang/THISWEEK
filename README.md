@@ -54,6 +54,21 @@ https://github.com/user-attachments/assets/8f32afd0-a5e5-45bb-a560-7fa91fb0e297
 
 ---
 
+## Support
+
+Having trouble with Next Seven, or have a question or suggestion? Feel free to reach out!
+
+**Email:** [gjermundmyrvang@gmail.com](mailto:gjermundmyrvang@gmail.com)
+
+Common issues:
+- **Tasks not saving** –-> Make sure the app has not been force-closed during a sync. All data is stored locally, so no internet connection is required.
+- **Day not rolling over** –-> Try pulling down to refresh the app or close and reopening it. The automatic midnight rollover triggers on app launch if the date has changed.
+- **Notes not appearing** –-> Access quick notes via the floating action button on the main screen.
+
+For bug reports or feature requests, you can also [open an issue](https://github.com/gjermundmyrvang/THISWEEK/issues) on GitHub.
+
+---
+
 ## IOS
 
 The app is curently available via TestFlight:
